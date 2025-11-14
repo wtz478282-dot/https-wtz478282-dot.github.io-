@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>校园地图互动版</title>
+<style>
+    body {
+        margin: 0;
+        background: #f0f0f0;
+        font-family: Arial;
+    }
+
+    #map-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    #info-box {
+        position: absolute;
+        background: white;
+        border: 3px solid darkred;
+        padding: 10px 14px;
+        border-radius: 8px;
+        display: none;
+        z-index: 10;
+        width: 260px;
+    }
+
+    .hotspot {
+        position: absolute;
+        cursor: pointer;
+        opacity: 0; /* 隐藏热点 */
+    }
+</style>
+</head>
+<body>
+
+<div id="map-container">
+
+    <!-- ⭐⭐⭐ 你要的图片引用已经加入并替换 ⭐⭐⭐ -->
+    <img src="1111111.jpg" id="campus-map" width="1400" alt="校园地图">
+
+    <!-- 信息框 -->
+    <div id="info-box"></div>
+
+    <!-- 热区（根据图片位置自动生成） -->
+    <div class="hotspot" style="left: 910px; top: 430px; width: 120px; height: 160px;"
+         onclick="showInfo(event, '图书馆', '闭馆维修')"></div>
+
+    <div class="hotspot" style="left: 1030px; top: 250px; width: 160px; height: 140px;"
+         onclick="showInfo(event, '体育馆', '全天 医学院运动会')"></div>
+
+    <div class="hotspot" style="left: 300px; top: 250px; width: 180px; height: 150px;"
+         onclick="showInfo(event, '理综楼', '9:00--11:30 全国大学生数学竞赛')"></div>
+
+    <div class="hotspot" style="left: 950px; top: 360px; width: 260px; height: 200px;"
+         onclick="showInfo(event, '操场', '暂无')"></div>
+
+    <div class="hotspot" style="left: 530px; top: 520px; width: 150px; height: 150px;"
+         onclick="showInfo(event, '知新楼C', '702量子报告厅 10:00--11:30 Office Hour')"></div>
+
+    <div class="hotspot" style="left: 620px; top: 140px; width: 180px; height: 150px;"
+         onclick="showInfo(event, '科技馆', '会议室 8:00--12:00 院士进校园——王贻芳先生座谈会')"></div>
+
+    <div class="hotspot" style="left: 770px; top: 300px; width: 150px; height: 310px;"
+         onclick="showInfo(event, '科技大厦', '全天 秋招')"></div>
+
+    <div class="hotspot" style="left: 240px; top: 430px; width: 190px; height: 160px;"
+         onclick="showInfo(event, '化工学院', '实验室创新会议')"></div>
+
+    <div class="hotspot" style="left: 690px; top: 450px; width: 140px; height: 160px;"
+         onclick="showInfo(event, '大学生活动中心', '见面会')"></div>
+
+</div>
+
+<script>
+function showInfo(event, building, activity) {
+    const box = document.getElementById("info-box");
+    box.style.left = (event.pageX + 20) + "px";
+    box.style.top = (event.pageY - 20) + "px";
+    box.innerHTML = `<b>${building}</b><br><br>今日活动：<br>${activity}`;
+    box.style.display = "block";
+}
+
+document.addEventListener("click", function(e) {
+    if (!e.target.classList.contains("hotspot")) {
+        document.getElementById("info-box").style.display = "none";
+    }
+});
+</script>
+
+</body>
+</html>
